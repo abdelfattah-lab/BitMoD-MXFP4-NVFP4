@@ -4,7 +4,7 @@
 HOME_DIR="~/BitMoD-MXFP4-NVFP4"
 ######################################################################
 
-model_list=("llama-3.1-8b" "llama-3.2-3b" "llama-2-7b" "llama-2-13b" "mistral-7b")
+model_list=("qwen-2.5-3b" "qwen-2.5-7b" "qwen-2.5-14b" "qwen-2.5-3b-ins" "qwen-2.5-7b-ins" "qwen-2.5-14b-ins" "llama-3.1-8b" "llama-3.2-3b" "llama-3.1-8b-ins" "llama-3.2-3b-ins" "llama-2-7b" "llama-2-13b" "mistral-7b-v3" "mistral-7b-v3-ins")
 dataset_list="wikitext,c4"
 seq_len=2048
 

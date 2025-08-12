@@ -25,7 +25,7 @@ def set_seed(seed=0):
     torch.cuda.manual_seed_all(seed)
 
 
-def load_model_and_tokenizer(model_name, device_map="cuda:0", use_slow_attn: bool=False):
+def load_model_and_tokenizer(model_name, device_map="cuda:0"):
     """
     Args:
         model_name: The model to be evaluated.
@@ -39,7 +39,6 @@ def load_model_and_tokenizer(model_name, device_map="cuda:0", use_slow_attn: boo
 
     if 'llama' in model_path_fp16.lower():
         config = LlamaConfig.from_pretrained(model_path_fp16)
-        config.use_slow_attn = use_slow_attn
 
         from transformers import LlamaForCausalLM
         model = LlamaForCausalLM.from_pretrained(
@@ -50,7 +49,6 @@ def load_model_and_tokenizer(model_name, device_map="cuda:0", use_slow_attn: boo
         )
     elif 'mistral' in model_path_fp16.lower():
         config = MistralConfig.from_pretrained(model_path_fp16)
-        config.use_slow_attn = use_slow_attn
 
         from transformers import MistralForCausalLM
         model = MistralForCausalLM.from_pretrained(

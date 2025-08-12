@@ -18,5 +18,12 @@
     "mistral-7b-v1": "mistralai/Mistral-7B-v0.1",
     "mistral-7b-v1-ins": "mistralai/Mistral-7B-Instruct-v0.1",
     "mistral-7b-v3": "mistralai/Mistral-7B-v0.3",
-    "mistral-7b-v3-ins": "mistralai/Mistral-7B-Instruct-v0.3"
+    "mistral-7b-v3-ins": "mistralai/Mistral-7B-Instruct-v0.3",
+
+    "qwen-2.5-3b": "Qwen/Qwen2.5-3B",
+    "qwen-2.5-7b": "Qwen/Qwen2.5-7B",
+    "qwen-2.5-14b": "Qwen/Qwen2.5-14B",
+    "qwen-2.5-3b-ins": "Qwen/Qwen2.5-3B-Instruct",
+    "qwen-2.5-7b-ins": "Qwen/Qwen2.5-7B-Instruct",
+    "qwen-2.5-14b-ins": "Qwen/Qwen2.5-14B-Instruct"
 }
