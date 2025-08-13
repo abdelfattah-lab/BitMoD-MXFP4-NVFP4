@@ -156,7 +156,7 @@ def quant_mxfp4_razer(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
     """
         MXFP4-RaZeR quantization.
     """
-    datatype_list = ['fp4_sp_pos', 'fp4_sp_neg', 'fp4_sm_pos', 'fp4_sm_neg']
+    datatype_list = ['fp4_sm_pos', 'fp4_sm_neg', 'fp4_sr_pos', 'fp4_sr_neg']
 
     FP32_EXPONENT_BIAS = 127
     FP32_MIN_NORMAL = 2 ** (-FP32_EXPONENT_BIAS + 1)
