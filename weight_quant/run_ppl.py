@@ -60,7 +60,7 @@ def eval_ppl(model, tokenizer, args):
             model_family = '_'.join(model_net.lower().split('-')[:-1])
             model.seq_len = args.seq_len
 
-            cache_testloader = f'~/data_cache/testloader_{model_family}_c4_{args.seq_len}.cache'
+            cache_testloader = f'./data_cache/testloader_{model_family}_c4_{args.seq_len}.cache'
             os.makedirs(os.path.dirname(cache_testloader), exist_ok=True)
             if os.path.exists(cache_testloader):
                 testenc = torch.load(cache_testloader)
