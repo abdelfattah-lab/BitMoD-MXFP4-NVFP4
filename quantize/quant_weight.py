@@ -69,9 +69,9 @@ def quant_fp4(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
 
 
 @torch.no_grad()
-def quant_fp4_bitmod(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):    
+def quant_fp4_razer(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):    
     """
-        FP4-BitMoD quantization.
+        FP4-RaZeR quantization.
     """
     assert wq_bits == 4, f"Currently only support 4-bit quantization, not {wq_bits}-bit"
 
@@ -83,7 +83,7 @@ def quant_fp4_bitmod(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
     else:
         w_fp_new = w_fp.view(-1, groupsize).to(torch.float32)
     
-    ########## Search for the Optimal BitMoD-FP4 Data Type ##########
+    ########## Search for the Optimal RaZeR-FP4 Data Type ##########
     w_dq = torch.zeros_like(w_fp_new)
     num_group = w_dq.shape[0]
     error = torch.full([num_group], 1e4, dtype=w_dq.dtype, device=w_dq.device)
@@ -152,9 +152,9 @@ def quant_mxfp4(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
 
 
 @torch.no_grad()
-def quant_mxfp4_bitmod(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
+def quant_mxfp4_razer(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
     """
-        MXFP4-BitMoD quantization.
+        MXFP4-RaZeR quantization.
     """
     datatype_list = ['fp4_sp_pos', 'fp4_sp_neg', 'fp4_sm_pos', 'fp4_sm_neg']
 
@@ -183,7 +183,7 @@ def quant_mxfp4_bitmod(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
 
     w_scaled = w_fp_new / (2**shared_exp)
 
-    ########## Search for the Optimal BitMoD-FP4 Data Type ##########
+    ########## Search for the Optimal RaZeR-FP4 Data Type ##########
     w_q = torch.zeros_like(w_scaled)
     num_group = w_q.shape[0]
     error = torch.full([num_group], 1e4, dtype=w_q.dtype, device=w_q.device)
@@ -259,16 +259,16 @@ def quant_nvfp4(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
     return w_dq.view(orig_shape).to(torch.float16)
 
 
-def quant_nvfp4_bitmod(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
+def quant_nvfp4_razer(w_fp, wq_bits: int=4, groupsize: Optional[int]=None):
     """
-        NVFP4-BitMoD quantization.
+        NVFP4-RaZeR quantization.
     """
     datatype_list = ['fp4_sm_pos', 'fp4_sm_neg', 'fp4_sr_pos', 'fp4_sr_neg']
     
     orig_shape = w_fp.shape
     w_fp_new = w_fp.view(-1, groupsize).to(torch.float32)
 
-    ########## Search for the Optimal BitMoD-FP4 Data Type ##########
+    ########## Search for the Optimal RaZeR-FP4 Data Type ##########
     w_q       = torch.zeros_like(w_fp_new)
     num_group = w_fp_new.shape[0]
     scale_fp  = torch.zeros(num_group, 1, dtype=w_q.dtype, device=w_q.device)
@@ -331,16 +331,16 @@ def quant_model(model, wq_bits: Optional[int]=None, wq_datatype: Optional[str]=N
         quant_func   = quant_nvfp4
         wq_bits      = 4
         wq_groupsize = 16
-    elif (wq_datatype == "fp4_bitmod"):
-        quant_func   = quant_fp4_bitmod
+    elif (wq_datatype == "fp4_razer"):
+        quant_func   = quant_fp4_razer
         wq_bits      = 4
         wq_groupsize = wq_groupsize
-    elif (wq_datatype == "mxfp4_bitmod"):
-        quant_func   = quant_mxfp4_bitmod
+    elif (wq_datatype == "mxfp4_razer"):
+        quant_func   = quant_mxfp4_razer
         wq_bits      = 4
         wq_groupsize = 32
-    elif (wq_datatype == "nvfp4_bitmod"):
-        quant_func   = quant_nvfp4_bitmod
+    elif (wq_datatype == "nvfp4_razer"):
+        quant_func   = quant_nvfp4_razer
         wq_bits      = 4
         wq_groupsize = 16
     

@@ -12,7 +12,7 @@ OUTPUT_DIR=${HOME_DIR}/results/ppl_${seq_len}
 
 w_bits_list=(4)
 w_groupsize_list=(128)
-w_dtype_list=("int4" "fp4" "fp4_bitmod" "mxfp4" "mxfp4_bitmod" "nvfp4" "nvfp4_bitmod")
+w_dtype_list=("int4" "fp4" "fp4_razer" "mxfp4" "mxfp4_razer" "nvfp4" "nvfp4_razer")
 
 
 for model_name in "${model_list[@]}"
