@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ########## Modify the path according to your HOME directory ##########
-HOME_DIR=~/llm/razer-llm/weight_quant
+HOME_DIR=~/razer-llm/weight_quant
 ######################################################################
 cd $HOME_DIR
 
